@@ -1,30 +1,23 @@
+const channels = ["freecodecamp", "ESL_SC2", "OgamingSC2", "cretetion", "storbeck",
+"habathcx", "RobotCaleb", "noobs2ninjas"]
+
 const corsanywhere = "https://cors-anywhere.herokuapp.com/";
+const channelUrl = "https://wind-bow.glitch.me/twitch-api/channels/";
+const streamUrl = "https://wind-bow.glitch.me/twitch-api/streams/";
+const twitchUrl = "https://go.twitch.tv/";
 
-const streams = [
-  "https://wind-bow.gomix.me/twitch-api/streams/freecodecamp",
-  "https://wind-bow.gomix.me/twitch-api/streams/ESL_SC2",
-  "https://wind-bow.gomix.me/twitch-api/streams/OgamingSC2",
-  "https://wind-bow.gomix.me/twitch-api/streams/cretetion",
-  "https://wind-bow.gomix.me/twitch-api/streams/storbeck",
-  "https://wind-bow.gomix.me/twitch-api/streams/habathcx",
-  "https://wind-bow.gomix.me/twitch-api/streams/RobotCaleb",
-  "https://wind-bow.gomix.me/twitch-api/streams/noobs2ninjas"
-];
-
-const twitchChannels = [
-  "https://go.twitch.tv/freecodecamp",
-  "https://go.twitch.tv/ESL_SC2",
-  "https://go.twitch.tv/OgamingSC2",
-  "https://go.twitch.tv/cretetion",
-  "https://go.twitch.tv/storbeck",
-  "https://go.twitch.tv/habathcx",
-  "https://go.twitch.tv/RobotCaleb",
-  "https://go.twitch.tv/noobs2ninjas"
-];
-
-let fetchURLs = streams.map(x => {
-  fetch(corsanywhere + x)
+let fetchStreamUrls = channels.map(channel => {
+  fetch(corsanywhere + streamUrl + channel)
     .then(response => response.json())
     .then(contents => console.log(contents))
     .catch(console.log("Error"));
 });
+
+let fetchChannelUrls = channels.map(channel => {
+  fetch(corsanywhere + channelUrl + channel)
+    .then(response => response.json())
+    .then(contents => console.log(contents))
+    .catch(console.log("Error"));
+});
+
+let twitchUrls = channels.map(channel => console.log(twitchUrl + channel));

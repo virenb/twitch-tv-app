@@ -1,3 +1,5 @@
+const corsanywhere = "https://cors-anywhere.herokuapp.com/";
+
 const streams = [
   "https://wind-bow.gomix.me/twitch-api/streams/freecodecamp",
   "https://wind-bow.gomix.me/twitch-api/streams/ESL_SC2",
@@ -18,4 +20,11 @@ const twitchChannels = [
   "https://go.twitch.tv/habathcx",
   "https://go.twitch.tv/RobotCaleb",
   "https://go.twitch.tv/noobs2ninjas"
-]
+];
+
+let fetchURLs = streams.map(x => {
+  fetch(corsanywhere + x)
+    .then(response => response.json())
+    .then(contents => console.log(contents))
+    .catch(console.log("Error"));
+});

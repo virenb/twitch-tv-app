@@ -10,8 +10,8 @@ let fetchStreamUrls = channels.map(channel => {
   fetch(corsanywhere + streamUrl + channel)
     .then(response => response.json())
     .then(content => {
-      //let streamStatus =
-      content.stream === null ? document.getElementById(channel + 'status').innerText = "Not streaming" : document.getElementById(channel + 'status').innerText = content.stream.channel.status;;
+      content.stream === null ? document.getElementById(channel + 'status').innerText = "Not streaming" : document.getElementById(channel + 'status').innerText = "Streaming";
+      document.getElementById(channel + 'desc').innerText = content.stream.channel.status;
     })
     .catch(error => console.log(error));
 });
@@ -24,9 +24,8 @@ let fetchChannelUrls = channels.map(channel => {
       let logo = content.logo;
       let imgId = content._id;
       logo !== null ? document.getElementById(imgId).src = logo : document.getElementById(imgId).alt = channelName;
-      document.getElementById(channelName).innerText = channelName;
+      document.getElementById(channelName).innerHTML = "<a href='https://go.twitch.tv/"+channelName+"' target='_blank'>"+channelName+"</a>"
     })
     .catch(error => console.log(error));
 });
 
-//let twitchUrls = channels.map(channel => console.log(twitchUrl + channel));
